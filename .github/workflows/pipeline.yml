@@ -1,0 +1,19 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  commands:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: run echo command
+        run: 'echo "# actions-tests" >> README.md'
+      - name: list folder elements
+        run: 'ls -la'
+      - name: 'verify docker cli'
+        run: 'docker --help'
