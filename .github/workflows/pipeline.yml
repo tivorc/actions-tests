@@ -17,3 +17,7 @@ jobs:
         run: 'ls -la'
       - name: 'verify docker cli'
         run: 'docker --help'
+      - name: 'verify heroku cli'
+        run: 'heroku --help'
+      - name: 'verify az cli'
+        run: 'az --help'
