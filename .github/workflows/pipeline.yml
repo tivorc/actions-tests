@@ -15,17 +15,21 @@ jobs:
       - name: run echo command
         run: 'echo "# actions-tests" >> README.md'
       - name: list folder elements
-        run: 'ls -la'
-      - name: 'verify docker cli'
-        run: 'docker --help'
-      - name: 'verify heroku cli'
-        run: 'heroku --help'
-      - name: 'verify az cli'
-        run: 'az --help'
+        run: "ls -la"
+      - name: "verify docker cli"
+        run: "docker --help"
+      - name: "verify heroku cli"
+        run: "heroku --help"
+      - name: "verify az cli"
+        run: "az --help"
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
       - name: show package.json version
         run: 'echo "${{ steps.package-version.outputs.current-version }}"'
+  send:
+    runs-on: ubuntu-18.04
+    needs: commands
+    steps:
       - name: show package.json version
-        run: 'echo cat package.json | jq -r .version'
+        run: 'echo "${{ steps.package-version.outputs.current-version }}"'
