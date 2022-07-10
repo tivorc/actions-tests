@@ -21,3 +21,10 @@ jobs:
         run: 'heroku --help'
       - name: 'verify az cli'
         run: 'az --help'
+      - name: get-npm-version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
+      - name: show package.json version
+        run: 'echo "${{ steps.package-version.outputs.current-version }}"'
+      - name: show package.json version
+        run: 'echo cat package.json | jq -r .version'
