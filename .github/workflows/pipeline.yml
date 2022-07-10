@@ -10,6 +10,8 @@ on:
 jobs:
   commands:
     runs-on: ubuntu-18.04
+    outputs:
+      packageversion: ${{ steps.package-version.outputs.current-version }}
     steps:
       - uses: actions/checkout@v2
       - name: run echo command
@@ -32,4 +34,4 @@ jobs:
     needs: commands
     steps:
       - name: show package.json version
-        run: 'echo "${{ needs.commands.steps.package-version.outputs.current-version }}"'
+        run: 'echo "${{ needs.commands.outputs.packageversion }}"'
