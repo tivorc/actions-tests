@@ -8,6 +8,14 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  loggin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure service principal login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
   commands:
     runs-on: ubuntu-18.04
     outputs:
